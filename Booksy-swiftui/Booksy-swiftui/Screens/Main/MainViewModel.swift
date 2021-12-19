@@ -24,7 +24,7 @@ class MainViewModel: ObservableObject, Identifiable {
     }
     
     func goToScreenCurrentWeather(currentWeather: CurrentWeather) -> some View {
-        let viewModel = CurrentWeatherViewModel(currentWeather: currentWeather)
+        let viewModel = CurrentWeatherViewModel(currentWeather: currentWeather, isCurrentWeather: true)
         
         return CurrentWeatherView(viewModel: viewModel)
     }
@@ -38,7 +38,7 @@ class MainViewModel: ObservableObject, Identifiable {
             return
         }
         
-        apiRequst.fetchCities(city: searchCity)
+        apiRequst.fetchCities(city: city)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] value in

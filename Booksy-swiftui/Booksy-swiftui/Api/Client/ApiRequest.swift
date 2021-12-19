@@ -29,7 +29,7 @@ class ApiRequest {
         .eraseToAnyPublisher()
     }
     
-    func fetchForecastWeather(cityId: Int) -> AnyPublisher<CityList, Error> {
+    func fetchForecastWeather(cityId: Int) -> AnyPublisher<ForecastWeather, Error> {
         let endpoint = "forecast?id=\(cityId)&units=metric"
         let urlString = baseURL + endpoint + apiKey
                         
@@ -41,7 +41,7 @@ class ApiRequest {
         
         return URLSession.shared.dataTaskPublisher(for: url)
         .map { $0.data }
-        .decode(type: CityList.self, decoder: JSONDecoder())
+        .decode(type: ForecastWeather.self, decoder: JSONDecoder())
         .eraseToAnyPublisher()
     }
 }

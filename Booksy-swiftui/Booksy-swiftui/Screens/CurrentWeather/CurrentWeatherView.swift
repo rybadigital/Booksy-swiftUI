@@ -15,11 +15,15 @@ struct CurrentWeatherView: View {
         self.viewModel = viewModel
     }
     
-    var body: some View {
-        informationCityText
-        
-        forecastWeatherNavigationLink
-            .navigationTitle("Current weather")
+    var body: some View {                
+        if viewModel.isCurrentWeather {
+            informationCityText
+            forecastWeatherNavigationLink
+                .navigationTitle(viewModel.titleScreen)
+        } else {
+            informationForecastWeatherText
+                .navigationTitle(viewModel.titleScreen)
+        }
     }
     
     var informationCityText: some View {
@@ -40,12 +44,25 @@ struct CurrentWeatherView: View {
         .padding(.leading, 16)
     }
     
+    var informationForecastWeatherText: some View {
+        VStack(alignment: .leading) {
+            Text("Temperature:  \( String(format: "%.1f", viewModel.temperature)) °C")
+            Divider()
+            Text("Main: \(viewModel.weatherMain)")
+            Divider()
+            Text("Description: \(viewModel.weatherDescription)")
+            Divider()
+            Text("Date: \(viewModel.dateText)")
+            
+            Spacer()
+        }
+        .padding(.top, 16)
+        .padding(.leading, 16)
+    }
     
     var forecastWeatherNavigationLink: some View {
-        NavigationLink(destination: self.viewModel.goToScreenCurrentWeather()) {
-            Text("Show forecast weather for \(viewModel.city)")
-                .padding(.top, 55)
+        NavigationLink(destination: self.viewModel.goToScreenForecastWeather()) {
+            Text("Show forecast weather for \(viewModel.city)")         
         }
-        .padding(.top, 32)
     }
 }

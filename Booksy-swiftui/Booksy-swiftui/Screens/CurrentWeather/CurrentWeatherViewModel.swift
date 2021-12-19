@@ -11,25 +11,39 @@ class CurrentWeatherViewModel: ObservableObject, Identifiable {
         
     let currentWeather: CurrentWeather        
     
+    let cityId: Int
     let city: String
     let countryCode: String
     let temperature: Double
     let weatherMain: String
     let weatherDescription: String
+    let dateText: String
     
-    init(currentWeather: CurrentWeather) {
+    let isCurrentWeather: Bool
+    let titleScreen: String
+    
+    init(currentWeather: CurrentWeather, isCurrentWeather: Bool) {
         self.currentWeather = currentWeather
         
+        cityId = currentWeather.id ?? 0
         city = currentWeather.name ?? ""
         countryCode = currentWeather.sys?.country ?? ""
         temperature = currentWeather.main?.temp ?? 0.0
         weatherMain = currentWeather.weather?.first?.main ?? ""
         weatherDescription = currentWeather.weather?.first?.description ?? ""
+        dateText = currentWeather.dt_txt ?? ""
+        
+        self.isCurrentWeather = isCurrentWeather
+        if isCurrentWeather {
+            titleScreen = "Current weather"
+        } else {
+            titleScreen = "Forecast weather"
+        }
     }
     
-    func goToScreenCurrentWeather() -> some View {
-        let viewModel = CurrentWeatherViewModel(currentWeather: currentWeather)
+    func goToScreenForecastWeather() -> some View {
+        let viewModel = ForecastWeatherViewModel(cityId: cityId, city: city)
         
-        return CurrentWeatherView(viewModel: viewModel)
+        return ForecastWeatherView(viewModel: viewModel)
     }
 }
