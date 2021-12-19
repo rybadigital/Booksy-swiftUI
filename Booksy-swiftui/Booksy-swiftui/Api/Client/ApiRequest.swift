@@ -28,4 +28,20 @@ class ApiRequest {
         .decode(type: CityList.self, decoder: JSONDecoder())
         .eraseToAnyPublisher()
     }
+    
+    func fetchForecastWeather(cityId: Int) -> AnyPublisher<CityList, Error> {
+        let endpoint = "forecast?id=\(cityId)&units=metric"
+        let urlString = baseURL + endpoint + apiKey
+                        
+        print(urlString)
+        
+        let url = URL(string: urlString)!// else {
+//            return
+//        }
+        
+        return URLSession.shared.dataTaskPublisher(for: url)
+        .map { $0.data }
+        .decode(type: CityList.self, decoder: JSONDecoder())
+        .eraseToAnyPublisher()
+    }
 }

@@ -21,10 +21,10 @@ struct MainView: View {
                 searchField
                 
                 if !viewModel.dataSource.isEmpty {
-                    citySection
+                    citiesSection
                 }
-            }
-            .navigationBarTitle("Main")
+            }            
+            .navigationBarTitle(Text("Main"), displayMode: .inline)
         }
     }
     
@@ -34,10 +34,12 @@ struct MainView: View {
         }
     }
     
-    var citySection: some View {
+    var citiesSection: some View {
         Section {
             ForEach(viewModel.dataSource) { viewModel in
-                CityCell(viewModel: viewModel)
+                NavigationLink(destination: self.viewModel.goToScreenCurrentWeather(currentWeather: viewModel.currentWeather)) {
+                    CityCell(viewModel: viewModel)
+                }
             }
         }
     }

@@ -23,11 +23,18 @@ class MainViewModel: ObservableObject, Identifiable {
             .store(in: &disposables)
     }
     
+    func goToScreenCurrentWeather(currentWeather: CurrentWeather) -> some View {
+        let viewModel = CurrentWeatherViewModel(currentWeather: currentWeather)
+        
+        return CurrentWeatherView(viewModel: viewModel)
+    }
+    
     func fetchWeather(city: String) {
         if city.isEmpty {
             DispatchQueue.main.async {
                 self.dataSource = []
             }
+            
             return
         }
         
