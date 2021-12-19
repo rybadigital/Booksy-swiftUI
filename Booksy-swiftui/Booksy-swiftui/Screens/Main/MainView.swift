@@ -24,8 +24,9 @@ struct MainView: View {
                     citiesSection
                 }
             }            
-            .navigationBarTitle(Text("Main"), displayMode: .inline)
+            .navigationTitle(Text("Main"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
     
     var searchField: some View {

@@ -21,10 +21,9 @@ struct ForecastWeatherView: View {
                 forecastsSection
             }
         }
-        .navigationBarTitle(Text(viewModel.city), displayMode: .inline)
-    }
-    
-    
+        .navigationTitle(Text(viewModel.city))
+        .navigationViewStyle(StackNavigationViewStyle())
+    }        
     
     var forecastsSection: some View {
         Section {

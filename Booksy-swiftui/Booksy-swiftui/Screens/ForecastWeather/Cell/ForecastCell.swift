@@ -19,7 +19,8 @@ struct ForecastCell: View {
         Text("\(viewModel.dateText)")
             .padding(.leading, 8)
         
+        Spacer()
+        
         Text("\( String(format: "%.1f", viewModel.temperature)) °C")
-     //       .padding(.trailing, 8)
     }
 }

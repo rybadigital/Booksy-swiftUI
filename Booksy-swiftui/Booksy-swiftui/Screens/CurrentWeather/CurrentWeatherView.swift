@@ -18,6 +18,7 @@ struct CurrentWeatherView: View {
     var body: some View {                
         if viewModel.isCurrentWeather {
             informationCityText
+            
             forecastWeatherNavigationLink
                 .navigationTitle(viewModel.titleScreen)
         } else {
@@ -62,7 +63,7 @@ struct CurrentWeatherView: View {
     
     var forecastWeatherNavigationLink: some View {
         NavigationLink(destination: self.viewModel.goToScreenForecastWeather()) {
-            Text("Show forecast weather for \(viewModel.city)")         
+            Text("Show forecast weather for \(viewModel.city)")
         }
     }
 }
