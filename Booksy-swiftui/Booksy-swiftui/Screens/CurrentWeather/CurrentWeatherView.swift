@@ -15,15 +15,20 @@ struct CurrentWeatherView: View {
         self.viewModel = viewModel
     }
     
-    var body: some View {                
+    var body: some View {
         if viewModel.isCurrentWeather {
             informationCityText
             
             forecastWeatherNavigationLink
+                .padding(.top, 32)
                 .navigationTitle(viewModel.titleScreen)
+            
+            Spacer()
         } else {
             informationForecastWeatherText
                 .navigationTitle(viewModel.titleScreen)
+            
+            Spacer()
         }
     }
     
@@ -38,8 +43,6 @@ struct CurrentWeatherView: View {
             Text("Main: \(viewModel.weatherMain)")
             Divider()
             Text("Description: \(viewModel.weatherDescription)")
-            
-            Spacer()
         }
         .padding(.top, 16)
         .padding(.leading, 16)
@@ -54,8 +57,6 @@ struct CurrentWeatherView: View {
             Text("Description: \(viewModel.weatherDescription)")
             Divider()
             Text("Date: \(viewModel.dateText)")
-            
-            Spacer()
         }
         .padding(.top, 16)
         .padding(.leading, 16)
