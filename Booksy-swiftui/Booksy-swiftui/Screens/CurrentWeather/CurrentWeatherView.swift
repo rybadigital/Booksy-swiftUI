@@ -22,14 +22,12 @@ struct CurrentWeatherView: View {
             forecastWeatherNavigationLink
                 .padding(.top, 32)
                 .navigationTitle(viewModel.titleScreen)
-            
-            Spacer()
         } else {
             informationForecastWeatherText
                 .navigationTitle(viewModel.titleScreen)
-            
-            Spacer()
         }
+        
+        Spacer()
     }
     
     var informationCityText: some View {
